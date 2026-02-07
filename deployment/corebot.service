@@ -1,0 +1,47 @@
+# Systemd unit file for CoreBot
+# Install this file to /etc/systemd/system/corebot.service
+# Then run: sudo systemctl daemon-reload
+# Then run: sudo systemctl enable corebot
+# Then run: sudo systemctl start corebot
+
+[Unit]
+Description=CoreBot AI Assistant
+Documentation=https://github.com/your-org/corebot
+After=network.target
+
+[Service]
+# Service configuration
+Type=notify
+ExecStart=/usr/bin/CoreBot.Host
+WorkingDirectory=/var/lib/corebot
+
+# Restart configuration
+Restart=always
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=3
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/corebot
+ReadWritePaths=/var/log/corebot
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=corebot
+
+# User to run the service as
+# Create a dedicated user: sudo useradd -r -s /bin/false corebot
+# User=corebot
+# Group=corebot
+
+# Environment variables
+Environment=DOTNET_ENVIRONMENT=Production
+Environment=ASPNETCORE_URLS=http://localhost:8080
+
+[Install]
+WantedBy=multi-user.target

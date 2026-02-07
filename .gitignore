@@ -1,0 +1,92 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options directory
+.vs/
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results of published projects
+*.publish
+publish/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/packages/*
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Sensitive configuration files
+config.json
+*.config.json
+appsettings.Production.json
+appsettings.Staging.json
+
+# Data directories
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+logs/
+*.log
+
+# Workspace files
+workspace/
+temp/
+tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test results
+TestResults/
+*.coverage
+*.coveragexml
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Deployment artifacts
+!/deployment/*.json
+!/deployment/*.service
+!/deployment/*.sh
+!/deployment/*.ps1

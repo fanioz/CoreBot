@@ -1,0 +1,98 @@
+{
+  "CoreBot": {
+    "Llm": {
+      "Provider": "openrouter",
+      "OpenRouter": {
+        "ApiKey": "YOUR_OPENROUTER_API_KEY_HERE",
+        "Model": "anthropic/claude-3.5-sonnet",
+        "BaseUrl": "https://openrouter.ai/api/v1"
+      },
+      "Anthropic": {
+        "ApiKey": "YOUR_ANTHROPIC_API_KEY_HERE",
+        "Model": "claude-3-5-sonnet-20241022",
+        "BaseUrl": "https://api.anthropic.com"
+      },
+      "OpenAI": {
+        "ApiKey": "YOUR_OPENAI_API_KEY_HERE",
+        "Model": "gpt-4o",
+        "BaseUrl": "https://api.openai.com/v1"
+      },
+      "DeepSeek": {
+        "ApiKey": "YOUR_DEEPSEEK_API_KEY_HERE",
+        "Model": "deepseek-chat",
+        "BaseUrl": "https://api.deepseek.com"
+      },
+      "Groq": {
+        "ApiKey": "YOUR_GROQ_API_KEY_HERE",
+        "Model": "llama-3.1-70b-versatile",
+        "BaseUrl": "https://api.groq.com/openai/v1"
+      },
+      "Gemini": {
+        "ApiKey": "YOUR_GEMINI_API_KEY_HERE",
+        "Model": "gemini-1.5-pro",
+        "BaseUrl": "https://generativelanguage.googleapis.com/v1beta"
+      },
+      "MaxTokens": 4096,
+      "Temperature": 0.7,
+      "StreamResponses": true
+    },
+    "ChatPlatforms": {
+      "telegram": {
+        "Enabled": false,
+        "BotToken": "YOUR_TELEGRAM_BOT_TOKEN_HERE",
+        "WebhookUrl": ""
+      },
+      "whatsapp": {
+        "Enabled": false,
+        "PhoneNumberId": "",
+        "AccessToken": "YOUR_WHATSAPP_ACCESS_TOKEN_HERE",
+        "WebhookSecret": "",
+        "BaseUrl": "https://graph.facebook.com/v18.0"
+      },
+      "feishu": {
+        "Enabled": false,
+        "AppId": "YOUR_FEISHU_APP_ID_HERE",
+        "AppSecret": "YOUR_FEISHU_APP_SECRET_HERE",
+        "EncryptKey": "YOUR_FEISHU_ENCRYPT_KEY_HERE",
+        "VerificationToken": "YOUR_VERIFICATION_TOKEN_HERE",
+        "BaseUrl": "https://open.feishu.cn/open-apis"
+      }
+    },
+    "Tools": {
+      "WorkspacePath": "~/.nanobot/workspace",
+      "ShellEnabled": true,
+      "ShellTimeout": 30,
+      "WebFetchEnabled": true,
+      "WebFetchTimeout": 10,
+      "FileOperationsEnabled": true
+    },
+    "Scheduler": {
+      "Enabled": true,
+      "CronExpressions": []
+    },
+    "Logging": {
+      "Level": "Information",
+      "Console": {
+        "Enabled": true
+      },
+      "File": {
+        "Enabled": true,
+        "Path": "./logs/corebot.log",
+        "MaxFileSizeMB": 10,
+        "MaxFiles": 5
+      },
+      "WindowsEventLog": {
+        "Enabled": false,
+        "LogName": "Application",
+        "SourceName": "CoreBot"
+      }
+    },
+    "DataDirectory": "./data",
+    "Skills": {
+      "EnableSkills": true,
+      "SkillsDirectory": "~/.nanobot/skills",
+      "EnabledSkills": [],
+      "DisabledSkills": []
+    }
+  }
+}

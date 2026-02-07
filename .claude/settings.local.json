@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_serena_serena__initial_instructions",
+      "mcp__plugin_serena_serena__replace_content",
+      "Skill(commit-commands:commit)"
+    ]
+  }
+}
