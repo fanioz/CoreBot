@@ -21,6 +21,11 @@ public class LlmConfiguration
     public string Model { get; set; } = string.Empty;
 
     /// <summary>
+    /// Base URL for the LLM provider API (optional, for custom endpoints)
+    /// </summary>
+    public string? BaseUrl { get; set; }
+
+    /// <summary>
     /// Maximum tokens for completion
     /// </summary>
     public int MaxTokens { get; set; } = 4096;

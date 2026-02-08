@@ -30,7 +30,7 @@ The system follows a layered architecture with event-driven messaging at its cor
 - **Tool Registry:** Dictionary-based registry implementing `IToolDefinition` with workspace sandboxing. Built-in tools: `FileReadTool`, `FileWriteTool`, `ShellTool`, `WebFetchTool`, `SendMessageTool`.
 
 ### Storage Layer
-- **Memory Store:** File-based JSON storage at `~/.nanobot/memory/{platform}/{user_id}/` using `System.Text.Json`.
+- **Memory Store:** File-based JSON storage at `~/.corebot/memory/{platform}/{user_id}/` using `System.Text.Json`.
 - **Configuration Store:** Uses `Microsoft.Extensions.Configuration` with JSON files and environment variable overrides (`${VAR_NAME}` syntax).
 
 ## Core Interfaces
@@ -152,7 +152,7 @@ Security is a core requirement:
 
 Configuration is loaded from (in priority order):
 1. `appsettings.json` (application defaults)
-2. `~/.nanobot/config.json` (user configuration)
+2. `~/.corebot/config.json` (user configuration)
 3. Environment variables (for sensitive values like API keys)
 
 Environment variable overrides use `${VAR_NAME}` syntax in configuration files.
@@ -172,7 +172,7 @@ Example configuration:
     }
   },
   "tools": {
-    "workspacePath": "~/.nanobot/workspace",
+    "workspacePath": "~/.corebot/workspace",
     "shellTimeoutSeconds": 30
   }
 }

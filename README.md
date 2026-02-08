@@ -37,9 +37,9 @@ A multi-platform AI assistant bot supporting Telegram, WhatsApp, and Feishu with
 
 3. Create configuration file:
    ```powershell
-   mkdir ~/.nanobot
-   copy config.json ~/.nanobot/config.json
-   notepad ~/.nanobot/config.json
+   mkdir ~/.corebot
+   copy config.json ~/.corebot/config.json
+   notepad ~/.corebot/config.json
    ```
 
 4. Install as Windows Service (run as Administrator):
@@ -81,9 +81,9 @@ The installation script handles everything:
 
 3. Create configuration:
    ```bash
-   mkdir -p ~/.nanobot
-   cp config.json ~/.nanobot/config.json
-   nano ~/.nanobot/config.json
+   mkdir -p ~/.corebot
+   cp config.json ~/.corebot/config.json
+   nano ~/.corebot/config.json
    ```
 
 4. Install as systemd service:
@@ -104,7 +104,7 @@ sudo ./deployment/install-systemd-service.sh uninstall
 
 ## Configuration
 
-Configuration is loaded from `~/.nanobot/config.json` (or `./data/config.json` for portable installations). See `deployment/config.json` for a complete example.
+Configuration is loaded from `~/.corebot/config.json` (or `./data/config.json` for portable installations). See `deployment/config.json` for a complete example.
 
 ### LLM Provider Configuration
 
@@ -149,7 +149,7 @@ Configure tool permissions and constraints:
 {
   "CoreBot": {
     "Tools": {
-      "WorkspacePath": "~/.nanobot/workspace",
+      "WorkspacePath": "~/.corebot/workspace",
       "ShellEnabled": true,
       "ShellTimeout": 30,
       "FileOperationsEnabled": true
@@ -209,7 +209,7 @@ sudo systemctl enable corebot
 
 ## Developing Skills
 
-Skills are .NET assemblies loaded from `~/.nanobot/skills/`. Create a skill by implementing the `ISkill` interface:
+Skills are .NET assemblies loaded from `~/.corebot/skills/`. Create a skill by implementing the `ISkill` interface:
 
 ```csharp
 using CoreBot.Core.Skills;
@@ -243,7 +243,7 @@ public class MySkill : ISkill
 }
 ```
 
-Build your skill as a DLL and place it in `~/.nanobot/skills/`. CoreBot will automatically load it on startup.
+Build your skill as a DLL and place it in `~/.corebot/skills/`. CoreBot will automatically load it on startup.
 
 ## Building for Production
 
@@ -271,10 +271,10 @@ Published files are in: `CoreBot.Host/bin/Release/net10.0/<runtime>/publish/`
 1. Check configuration is valid:
    ```bash
    # Windows
-   type ~/.nanobot/config.json
+   type ~/.corebot/config.json
 
    # Linux
-   cat ~/.nanobot/config.json
+   cat ~/.corebot/config.json
    ```
 
 2. Check logs:
@@ -294,7 +294,7 @@ Published files are in: `CoreBot.Host/bin/Release/net10.0/<runtime>/publish/`
    icacls .\data
 
    # Linux
-   ls -la ~/.nanobot
+   ls -la ~/.corebot
    ```
 
 ### Permission Errors

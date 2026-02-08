@@ -13,9 +13,9 @@ public class FileMemoryStore : IMemoryStore
 
     public FileMemoryStore()
     {
-        // Use project-local .nanobot/memory for development, or user home for production
+        // Use project-local .corebot/memory for development, or user home for production
         var projectDir = Directory.GetCurrentDirectory();
-        var projectMemoryDir = Path.Combine(projectDir, ".nanobot", "memory");
+        var projectMemoryDir = Path.Combine(projectDir, ".corebot", "memory");
 
         if (Directory.Exists(projectMemoryDir))
         {
@@ -24,7 +24,7 @@ public class FileMemoryStore : IMemoryStore
         else
         {
             var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            _memoryDirectory = Path.Combine(homeDir, ".nanobot", "memory");
+            _memoryDirectory = Path.Combine(homeDir, ".corebot", "memory");
         }
 
         _jsonOptions = new JsonSerializerOptions

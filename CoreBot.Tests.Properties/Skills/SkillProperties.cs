@@ -242,10 +242,10 @@ public class SkillProperties
     }
 
     [Theory]
-    [InlineData("~/.nanobot/skills")]
+    [InlineData("~/.corebot/skills")]
     [InlineData("./skills")]
-    [InlineData("/var/lib/nanobot/skills")]
-    [InlineData("C:\\Program Files\\Nanobot\\skills")]
+    [InlineData("/var/lib/corebot/skills")]
+    [InlineData("C:\\Program Files\\Corebot\\skills")]
     public void SkillsConfiguration_SkillsDirectory_CanBeSet(string directory)
     {
         // Arrange

@@ -47,17 +47,17 @@ Output will be in: `CoreBot.Host/bin/Release/net10.0/<runtime>/publish/`
 ### Windows
 ```powershell
 cd CoreBot.Host\bin\Release\net10.0\win-x64\publish
-mkdir ~/.nanobot
-copy config-template.json ~/.nanobot/config.json
-notepad ~/.nanobot/config.json
+mkdir ~/.corebot
+copy config-template.json ~/.corebot/config.json
+notepad ~/.corebot/config.json
 ```
 
 ### Linux
 ```bash
 cd CoreBot.Host/bin/Release/net10.0/linux-x64/publish
-mkdir -p ~/.nanobot
-cp config-template.json ~/.nanobot/config.json
-nano ~/.nanobot/config.json
+mkdir -p ~/.corebot
+cp config-template.json ~/.corebot/config.json
+nano ~/.corebot/config.json
 ```
 
 3. **Required Configuration Changes:**
@@ -191,8 +191,8 @@ Before installing as a service, test the application manually:
 ### Service Won't Start
 
 1. **Check Configuration**
-   - Verify config.json exists at `~/.nanobot/config.json`
-   - Validate JSON syntax: `cat ~/.nanobot/config.json | python -m json.tool` (Linux)
+   - Verify config.json exists at `~/.corebot/config.json`
+   - Validate JSON syntax: `cat ~/.corebot/config.json | python -m json.tool` (Linux)
    - Ensure API keys are set correctly
 
 2. **Check Logs**
@@ -211,8 +211,8 @@ Before installing as a service, test the application manually:
 
 **Issue**: Service starts but stops immediately
 - **Solution**: Check configuration file for errors
-- **Windows**: `type ~/.nanobot/config.json`
-- **Linux**: `cat ~/.nanobot/config.json`
+- **Windows**: `type ~/.corebot/config.json`
+- **Linux**: `cat ~/.corebot/config.json`
 
 **Issue**: LLM API calls fail
 - **Solution**: Verify API key is correct and has sufficient credits
@@ -261,7 +261,7 @@ sudo systemctl start corebot
 .\install-windows-service.ps1 -Uninstall
 
 # Remove files (optional)
-Remove-Item -Recurse -Force ~\.nanobot
+Remove-Item -Recurse -Force ~\.corebot
 Remove-Item -Recurse -Force .\data
 ```
 
@@ -273,7 +273,7 @@ sudo ./install-systemd-service.sh uninstall
 # Remove user and data (optional)
 sudo userdel corebot
 sudo rm -rf /var/lib/corebot
-rm -rf ~/.nanobot
+rm -rf ~/.corebot
 ```
 
 ## Getting Help

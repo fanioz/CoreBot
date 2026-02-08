@@ -109,14 +109,14 @@ The Service Host Layer uses .NET Generic Host (`Microsoft.Extensions.Hosting`) w
 
 **Memory Store:**
 - File-based storage using JSON
-- Directory structure: `~/.nanobot/memory/{platform}/{user_id}/`
+- Directory structure: `~/.corebot/memory/{platform}/{user_id}/`
 - Each conversation stored as `{conversation_id}.json`
 - Uses `System.Text.Json` for serialization
 - Implements simple indexing for queries
 
 **Configuration Store:**
 - Uses `Microsoft.Extensions.Configuration`
-- Loads from: `appsettings.json`, `~/.nanobot/config.json`, environment variables
+- Loads from: `appsettings.json`, `~/.corebot/config.json`, environment variables
 - Binds to strongly-typed configuration classes using IOptions pattern
 - Validates configuration on startup
 
@@ -379,7 +379,7 @@ public class SchedulerService : BackgroundService
     }
   },
   "tools": {
-    "workspacePath": "~/.nanobot/workspace",
+    "workspacePath": "~/.corebot/workspace",
     "shellTimeoutSeconds": 30,
     "allowedTools": ["file_read", "file_write", "shell", "web_fetch", "send_message"]
   },
@@ -641,7 +641,7 @@ public Property WorkspacePathValidation_RejectsPathsOutsideWorkspace()
         Arb.From<string>(), // Generate random paths
         path =>
         {
-            var workspace = "/home/user/.nanobot/workspace";
+            var workspace = "/home/user/.corebot/workspace";
             var toolRegistry = new ToolRegistry(workspace);
             var fileReadTool = toolRegistry.GetTool("file_read");
             

@@ -176,6 +176,6 @@ fi
 echo ""
 echo -e "${YELLOW}Remember to:${NC}"
 echo -e "${WHITE}  1. Edit config.json with your API keys and tokens${NC}"
-echo -e "${WHITE}  2. Create ~/.nanobot directory for configuration${NC}"
-echo -e "${WHITE}  3. Copy config.json to ~/.nanobot/config.json${NC}"
+echo -e "${WHITE}  2. Create ~/.corebot directory for configuration${NC}"
+echo -e "${WHITE}  3. Copy config.json to ~/.corebot/config.json${NC}"
 echo ""

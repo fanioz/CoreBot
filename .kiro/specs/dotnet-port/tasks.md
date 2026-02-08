@@ -22,7 +22,7 @@ Each task builds on previous work, with property-based tests placed close to imp
     - _Requirements: 7.5, 7.6, 7.7_
   
   - [ ] 2.2 Implement Configuration_Manager with JSON and environment variable support
-    - Load from appsettings.json and ~/.nanobot/config.json
+    - Load from appsettings.json and ~/.corebot/config.json
     - Support environment variable overrides (${VAR_NAME} syntax)
     - Create default config file if missing
     - _Requirements: 7.1, 7.2, 7.3_
@@ -66,7 +66,7 @@ Each task builds on previous work, with property-based tests placed close to imp
 - [x] 4. Implement memory store with JSON persistence
   - [ ] 4.1 Create ConversationMessage model and storage structure
     - Define conversation storage format
-    - Implement directory structure: ~/.nanobot/memory/{platform}/{user_id}/
+    - Implement directory structure: ~/.corebot/memory/{platform}/{user_id}/
     - _Requirements: 6.1, 6.2, 6.3_
   
   - [ ] 4.2 Implement IMemoryStore with file-based JSON storage

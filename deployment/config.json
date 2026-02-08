@@ -59,7 +59,7 @@
       }
     },
     "Tools": {
-      "WorkspacePath": "~/.nanobot/workspace",
+      "WorkspacePath": "~/.corebot/workspace",
       "ShellEnabled": true,
       "ShellTimeout": 30,
       "WebFetchEnabled": true,
@@ -90,7 +90,7 @@
     "DataDirectory": "./data",
     "Skills": {
       "EnableSkills": true,
-      "SkillsDirectory": "~/.nanobot/skills",
+      "SkillsDirectory": "~/.corebot/skills",
       "EnabledSkills": [],
       "DisabledSkills": []
     }

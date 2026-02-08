@@ -8,7 +8,7 @@ public class ToolConfiguration
     /// <summary>
     /// Path to the workspace directory for file operations
     /// </summary>
-    public string WorkspacePath { get; set; } = "~/.nanobot/workspace";
+    public string WorkspacePath { get; set; } = "~/.corebot/workspace";
 
     /// <summary>
     /// Maximum timeout in seconds for shell commands

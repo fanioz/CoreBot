@@ -15,7 +15,7 @@ public class ToolRegistry
     public ToolRegistry(ToolConfiguration configuration)
     {
         _tools = new Dictionary<string, IToolDefinition>(StringComparer.OrdinalIgnoreCase);
-        _workspacePath = configuration.WorkspacePath ?? "~/.nanobot/workspace";
+        _workspacePath = configuration.WorkspacePath ?? "~/.corebot/workspace";
         _jsonOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase

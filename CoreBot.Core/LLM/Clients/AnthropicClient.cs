@@ -13,15 +13,19 @@ public class AnthropicClient : ILlmProvider
     private readonly HttpClient _httpClient;
     private readonly string _apiKey;
     private readonly string _model;
+    private readonly string _baseUrl;
 
     public string ProviderName => "anthropic";
 
-    public AnthropicClient(HttpClient httpClient, string apiKey, string model)
+    public AnthropicClient(HttpClient httpClient, string apiKey, string model, string? baseUrl = null)
     {
         _httpClient = httpClient;
         _apiKey = apiKey;
         _model = model;
+        _baseUrl = baseUrl ?? "https://api.anthropic.com";
     }
+
+    private string GetApiPath() => $"{_baseUrl.TrimEnd('/')}/v1/messages";
 
     public async Task<LlmResponse> CompleteAsync(LlmRequest request, CancellationToken ct = default)
     {
@@ -33,7 +37,7 @@ public class AnthropicClient : ILlmProvider
             var httpRequest = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri("https://api.anthropic.com/v1/messages"),
+                RequestUri = new Uri(GetApiPath()),
                 Content = new StringContent(
                     JsonSerializer.Serialize(requestBody, new JsonSerializerOptions
                     {
@@ -138,7 +142,7 @@ public class AnthropicClient : ILlmProvider
         var httpRequest = new HttpRequestMessage
         {
             Method = HttpMethod.Post,
-            RequestUri = new Uri("https://api.anthropic.com/v1/messages"),
+            RequestUri = new Uri(GetApiPath()),
             Content = new StringContent(
                 JsonSerializer.Serialize(requestBody, new JsonSerializerOptions
                 {
@@ -236,8 +240,7 @@ public class AnthropicClient : ILlmProvider
 
     private static object HandleAssistantMessage(LlmMessage m)
     {
-        var content = new { type = "text", text = m.Content };
-
+        // If there are tool calls, return tool_use blocks
         if (m.ToolCalls != null && m.ToolCalls.Count > 0)
         {
             var toolUseContent = m.ToolCalls.Select(tc => new
@@ -255,16 +258,21 @@ public class AnthropicClient : ILlmProvider
             return new
             {
                 role = "user",
-                content = new
+                content = new[]
                 {
-                    type = "tool_result",
-                    tool_use_id = m.ToolResult.MessageId,
-                    content = m.ToolResult.Result
+                    new
+                    {
+                        type = "tool_result",
+                        tool_use_id = m.ToolResult.MessageId,
+                        content = m.ToolResult.Result
+                    }
                 }
             };
         }
 
-        return new { role = "assistant", content = content };
+        // Regular text response - must be in array format
+        var textBlock = new { type = "text", text = m.Content };
+        return new { role = "assistant", content = new[] { textBlock } };
     }
 
     private object BuildRequestBody(List<object> messages, string? system, LlmRequest request)

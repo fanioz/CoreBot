@@ -106,7 +106,7 @@ This document specifies the requirements for porting Nanobot from Python to .NET
 
 #### Acceptance Criteria
 
-1. WHEN Nanobot starts, THE Configuration_Manager SHALL load settings from a JSON file at ~/.nanobot/config.json (or Windows equivalent)
+1. WHEN Nanobot starts, THE Configuration_Manager SHALL load settings from a JSON file at ~/.corebot/config.json (or Windows equivalent)
 2. WHEN a configuration file does not exist, THE Configuration_Manager SHALL create a default configuration file
 3. THE Configuration_Manager SHALL support environment variable overrides for sensitive values (API keys, tokens)
 4. WHEN configuration is invalid, THE Configuration_Manager SHALL log descriptive errors and fail to start

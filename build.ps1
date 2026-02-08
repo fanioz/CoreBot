@@ -139,6 +139,6 @@ if ($Runtime -eq "both" -or $Runtime -eq "linux-x64") {
 Write-Host ""
 Write-Host "Remember to:" -ForegroundColor Yellow
 Write-Host "  1. Edit config.json with your API keys and tokens" -ForegroundColor White
-Write-Host "  2. Create ~/.nanobot directory for configuration" -ForegroundColor White
-Write-Host "  3. Copy config.json to ~/.nanobot/config.json" -ForegroundColor White
+Write-Host "  2. Create ~/.corebot directory for configuration" -ForegroundColor White
+Write-Host "  3. Copy config.json to ~/.corebot/config.json" -ForegroundColor White
 Write-Host ""

@@ -44,38 +44,38 @@ public static class ConfigurationHelper
     }
 
     /// <summary>
-    /// Gets the user's nanobot configuration directory
+    /// Gets the user's corebot configuration directory
     /// </summary>
-    public static string GetNanobotConfigDirectory()
+    public static string GetCorebotConfigDirectory()
     {
-        // For development, use project-local .nanobot directory
+        // For development, use project-local .corebot directory
         var projectDir = Directory.GetCurrentDirectory();
-        var nanobotDir = Path.Combine(projectDir, ".nanobot");
+        var corebotDir = Path.Combine(projectDir, ".corebot");
 
         // For production, use user home directory
-        if (!Directory.Exists(nanobotDir))
+        if (!Directory.Exists(corebotDir))
         {
             var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            return Path.Combine(homeDir, ".nanobot");
+            return Path.Combine(homeDir, ".corebot");
         }
 
-        return nanobotDir;
+        return corebotDir;
     }
 
     /// <summary>
-    /// Gets the path to the user's nanobot configuration file
+    /// Gets the path to the user's corebot configuration file
     /// </summary>
-    public static string GetNanobotConfigPath()
+    public static string GetCorebotConfigPath()
     {
-        // For development, use project-local .nanobot/config.json
+        // For development, use project-local .corebot/config.json
         var projectDir = Directory.GetCurrentDirectory();
-        var projectConfig = Path.Combine(projectDir, ".nanobot", "config.json");
+        var projectConfig = Path.Combine(projectDir, ".corebot", "config.json");
 
         // For production, use user home directory
         if (!File.Exists(projectConfig))
         {
             var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            return Path.Combine(homeDir, ".nanobot", "config.json");
+            return Path.Combine(homeDir, ".corebot", "config.json");
         }
 
         return projectConfig;
@@ -119,7 +119,7 @@ public static class ConfigurationHelper
             },
             Tools = new ToolConfiguration
             {
-                WorkspacePath = "~/.nanobot/workspace",
+                WorkspacePath = "~/.corebot/workspace",
                 ShellTimeoutSeconds = 30,
                 AllowedTools = new List<string> { "file_read", "file_write", "shell", "web_fetch", "send_message" }
             },

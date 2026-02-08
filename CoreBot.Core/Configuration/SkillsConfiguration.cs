@@ -8,7 +8,7 @@ public class SkillsConfiguration
     /// <summary>
     /// Directory containing skill DLLs
     /// </summary>
-    public string SkillsDirectory { get; set; } = "~/.nanobot/skills";
+    public string SkillsDirectory { get; set; } = "~/.corebot/skills";
 
     /// <summary>
     /// Whether to load skills on startup

@@ -249,7 +249,7 @@ sudo ./install-systemd-service.sh
 
 ### Configuration
 
-Configuration location: `~/.nanobot/config.json`
+Configuration location: `~/.corebot/config.json`
 
 Required settings:
 - LLM provider API key

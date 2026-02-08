@@ -131,14 +131,17 @@ public class AgentService : IHostedService
 
         await _messageBus.PublishAsync(agentResponse, ct);
 
-        // Save assistant response to memory
-        var storedAssistantMessage = new StoredMessage
+        // Save assistant response to memory (only if successful)
+        if (string.IsNullOrEmpty(finalResponse.Error) && !string.IsNullOrEmpty(agentResponse.Content))
         {
-            Timestamp = agentResponse.Timestamp,
-            Role = "assistant",
-            Content = agentResponse.Content
-        };
-        await _memoryStore.SaveMessageAsync(userMessage.Platform, userMessage.UserId, storedAssistantMessage, ct);
+            var storedAssistantMessage = new StoredMessage
+            {
+                Timestamp = agentResponse.Timestamp,
+                Role = "assistant",
+                Content = agentResponse.Content
+            };
+            await _memoryStore.SaveMessageAsync(userMessage.Platform, userMessage.UserId, storedAssistantMessage, ct);
+        }
 
         // Save tool results to memory
         foreach (var toolResult in toolResults)
