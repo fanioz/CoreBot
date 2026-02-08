@@ -8,9 +8,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  DOTNET_VERSION: '10.0.102'
-
 jobs:
   build:
     name: Build on ${{ matrix.os }}
@@ -35,11 +32,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '10.0.x'
-        include-prerelease: true
+    - name: Install .NET 10 Preview
+      run: |
+        curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 10.0 --quality preview
+        echo "$HOME/.dotnet" >> $GITHUB_PATH
+      shell: bash
+
+    - name: Verify .NET Installation
+      run: dotnet --info
 
     - name: Restore dependencies
       run: dotnet restore CoreBot.sln
