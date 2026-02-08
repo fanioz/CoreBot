@@ -17,12 +17,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-14, macos-14-large]
         include:
           - os: ubuntu-latest
             runtime: linux-x64
           - os: windows-latest
             runtime: win-x64
+          - os: macos-14
+            runtime: osx-x64
+          - os: macos-14-large
+            runtime: osx-arm64
 
     steps:
     - name: Checkout
@@ -52,6 +56,11 @@ jobs:
       run: |
         dotnet publish CoreBot.Host -c Release -r ${{ matrix.runtime }} --self-contained -p:PublishSingleFile=true -o publish/${{ matrix.runtime }}
 
+    - name: Publish (macOS)
+      if: startsWith(matrix.os, 'macos-')
+      run: |
+        dotnet publish CoreBot.Host -c Release -r ${{ matrix.runtime }} --self-contained -p:PublishSingleFile=true -o publish/${{ matrix.runtime }}
+
     - name: Upload artifacts (Linux)
       if: matrix.os == 'ubuntu-latest'
       uses: actions/upload-artifact@v4
@@ -61,6 +70,13 @@ jobs:
 
     - name: Upload artifacts (Windows)
       if: matrix.os == 'windows-latest'
+      uses: actions/upload-artifact@v4
+      with:
+        name: CoreBot-${{ matrix.runtime }}
+        path: publish/${{ matrix.runtime }}/
+
+    - name: Upload artifacts (macOS)
+      if: startsWith(matrix.os, 'macos-')
       uses: actions/upload-artifact@v4
       with:
         name: CoreBot-${{ matrix.runtime }}
@@ -88,10 +104,24 @@ jobs:
         name: CoreBot-win-x64
         path: release/win-x64
 
+    - name: Download macOS Intel artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: CoreBot-osx-x64
+        path: release/osx-x64
+
+    - name: Download macOS Apple Silicon artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: CoreBot-osx-arm64
+        path: release/osx-arm64
+
     - name: Create archives
       run: |
         cd release/linux-x64 && tar -czf ../../corebot-linux-x64.tar.gz *
         cd ../win-x64 && zip -r ../../corebot-win-x64.zip *
+        cd ../osx-x64 && tar -czf ../../corebot-osx-x64.tar.gz *
+        cd ../osx-arm64 && tar -czf ../../corebot-osx-arm64.tar.gz *
 
     - name: Generate release notes
       id: release_notes
@@ -107,6 +137,8 @@ jobs:
         files: |
           corebot-linux-x64.tar.gz
           corebot-win-x64.zip
+          corebot-osx-x64.tar.gz
+          corebot-osx-arm64.tar.gz
         body_path: release_notes.md
         draft: false
         prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
