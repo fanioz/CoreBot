@@ -9,7 +9,7 @@ on:
     branches: [ main ]
 
 env:
-  DOTNET_VERSION: '10.0.100'
+  DOTNET_VERSION: 'latest'
 
 jobs:
   build:
